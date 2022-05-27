@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_holy_quran/model/model.dart';
 import 'package:the_holy_quran/utils/data_service.dart';
+import 'package:the_holy_quran/utils/shimer_effect.dart';
 
 class SurahPage extends StatefulWidget {
   const SurahPage({Key? key}) : super(key: key);
@@ -34,10 +35,34 @@ class _SurahPageState extends State<SurahPage> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Card(
-                      child: ListTile(
-                        title: Text(data[index].name),
-                        subtitle: Text(data[index].englishName),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ListTile(
+                          leading: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              data[index].number.toString(),
+                            ),
+                          ),
+                          title: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              data[index].name,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              data[index].englishName,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -51,9 +76,7 @@ class _SurahPageState extends State<SurahPage> {
               ),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Effect();
           }
         },
       ),
